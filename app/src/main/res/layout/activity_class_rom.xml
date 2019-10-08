@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.Register">
+    tools:context=".ClassRomActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -12,22 +13,20 @@
         android:src="@drawable/ic_curvebacks_01"
         android:scaleType="fitXY"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_students"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="AUXILIARES"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        android:textColor="#fff"
-        android:layout_marginTop="10dp"
-        android:textSize="25sp"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/txt_students"
         android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="AULAS"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+            android:textColor="#fff"
+            android:layout_marginTop="10dp"
+            android:textSize="25sp"/>
 
         <androidx.cardview.widget.CardView
             style="@style/Widget.MaterialComponents.CardView"
@@ -46,22 +45,16 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/aula1"
                     android:orientation="vertical"
                     android:padding="15dp"
-                    android:layout_marginLeft="5dp">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/profile"
-                        android:layout_centerVertical="true"/>
+                    android:layout_marginLeft="20dp">
 
                     <TextView
                         android:id="@+id/txt_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="65dp"
-                        android:text="Romario Quispe"
+                        android:text="5to - Seccion: A"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -70,7 +63,6 @@
                         android:layout_below="@+id/txt_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_name"
                         android:text="Turno: Mañana"
                         android:textColor="#c6c6c6"
                         android:textSize="16sp"
@@ -99,20 +91,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="15dp"
-                    android:layout_marginLeft="5dp">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/profile"
-                        android:layout_centerVertical="true"/>
+                    android:layout_marginLeft="20dp">
 
                     <TextView
                         android:id="@+id/txt_name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="65dp"
-                        android:text="Romario Quispe"
+                        android:text="5to - Seccion: A"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -121,7 +106,6 @@
                         android:layout_below="@+id/txt_name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_name1"
                         android:text="Turno: Mañana"
                         android:textColor="#c6c6c6"
                         android:textSize="16sp"
@@ -150,20 +134,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="15dp"
-                    android:layout_marginLeft="5dp">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/profile"
-                        android:layout_centerVertical="true"/>
+                    android:layout_marginLeft="20dp">
 
                     <TextView
                         android:id="@+id/txt_name2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="65dp"
-                        android:text="Romario Quispe"
+                        android:text="Christopea"
                         android:textColor="#000000"
                         android:textSize="16sp" />
 
@@ -172,8 +149,7 @@
                         android:layout_below="@+id/txt_name2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_name2"
-                        android:text="Turno: Mañana"
+                        android:text="Hey, How are you ?"
                         android:textColor="#c6c6c6"
                         android:textSize="16sp"
                         android:layout_marginTop="2dp"/>
@@ -197,7 +173,7 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/add_auxiliar"
+        android:id="@+id/add_class_rom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add_24px"

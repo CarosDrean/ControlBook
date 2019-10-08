@@ -8,4 +8,9 @@
     <color name="grey_10">#e6e6e6</color>
     <color name="green_success">#237937</color>
     <color name="yellow_success">#FF9800</color>
+
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorTextORIcon">#FFFFFF</color>
+    <color name="colorDivider">#EBEBEB</color>
+    <color name="colorSecondaryText">#757575</color>
 </resources>

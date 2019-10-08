@@ -27,6 +27,11 @@ class ClassRom : Fragment() {
                 ?.replace(R.id.nav_host_fragment, Students())?.commit()
         }
 
+        v.add_class_rom.setOnClickListener {
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.nav_host_fragment, AddClassRom())?.commit()
+        }
+
         return v
     }
 
