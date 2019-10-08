@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "804369160399",
+    "firebase_url": "https://control-book.firebaseio.com",
+    "project_id": "control-book",
+    "storage_bucket": "control-book.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804369160399:android:492ee1d13026a76fb0bfba",
+        "android_client_info": {
+          "package_name": "xyz.drean.controlbook"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804369160399-icfocsot2ovkl04cmba9ujg3kc8afk52.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.drean.controlbook",
+            "certificate_hash": "891176651c279031f350b2f4ee2007a6e152c8b9"
+          }
+        },
+        {
+          "client_id": "804369160399-b1p9mi49uujgmqtne1j47albilpjl4dl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACirLNQbMgfTygnIgYo6SjVogiMA1cgAE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804369160399-b1p9mi49uujgmqtne1j47albilpjl4dl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
