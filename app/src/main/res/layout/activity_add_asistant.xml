@@ -42,7 +42,7 @@
         android:layout_alignStart="@+id/tv_auth_title"/>
 
     <EditText
-        android:id="@+id/et_name_class"
+        android:id="@+id/et_email_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -51,9 +51,9 @@
         android:padding="@dimen/padding_field"
         android:background="@drawable/bg_auth_field"
         android:drawablePadding="@dimen/padding_field"
-        android:drawableStart="@drawable/ic_mail"
+        android:drawableStart="@drawable/icons8_administrator_24px"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:hint="Nombre del aula"
+        android:hint="Nombres"
         android:inputType="text"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/text_body_size"
@@ -62,63 +62,84 @@
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/et_grado"
+        android:id="@+id/et_password_field"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
         android:layout_marginStart="@dimen/margin_auth"
         android:layout_marginEnd="@dimen/margin_auth"
         android:background="@drawable/bg_auth_field"
-        android:drawableStart="@drawable/ic_password"
+        android:drawableStart="@drawable/icons8_pencil_24px"
+        android:drawablePadding="@dimen/padding_field"
+
+        android:fontFamily="@font/nunito_sans_reguler"
+        android:hint="Apellidos"
+        android:inputType="text"
+        android:padding="16dp"
+        android:textColor="@color/colorPrimaryText"
+        android:textColorHint="@color/colorSecondaryText"
+        android:textSize="@dimen/text_body_size"
+        android:layout_below="@+id/et_email_field"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/et_password_field1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:layout_marginStart="@dimen/margin_auth"
+        android:layout_marginEnd="@dimen/margin_auth"
+        android:background="@drawable/bg_auth_field"
+        android:drawableStart="@drawable/icons8_fingerprint_24px"
         android:drawablePadding="@dimen/padding_field"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:hint="Grado"
+        android:hint="DNI"
         android:inputType="number"
         android:padding="@dimen/padding_field"
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText"
         android:textSize="@dimen/text_body_size"
-        android:layout_below="@+id/et_name_class"
+        android:layout_below="@+id/et_password_field"
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/et_section"
+        android:id="@+id/et_password_field2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
         android:layout_marginStart="@dimen/margin_auth"
         android:layout_marginEnd="@dimen/margin_auth"
         android:background="@drawable/bg_auth_field"
-        android:drawableStart="@drawable/ic_password"
+        android:drawableStart="@drawable/icons8_add_user_24px"
         android:drawablePadding="@dimen/padding_field"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:hint="Seccion"
+        android:hint="user"
         android:inputType="text"
         android:padding="@dimen/padding_field"
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText"
         android:textSize="@dimen/text_body_size"
-        android:layout_below="@+id/et_grado"
+        android:layout_below="@+id/et_password_field1"
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/et_turno"
+        android:id="@+id/et_password_field3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
         android:layout_marginStart="@dimen/margin_auth"
         android:layout_marginEnd="@dimen/margin_auth"
         android:background="@drawable/bg_auth_field"
-        android:drawableStart="@drawable/ic_password"
+        android:drawableStart="@drawable/icons8_key_2_24px"
         android:drawablePadding="@dimen/padding_field"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:hint="Turno"
+        android:hint="Password"
         android:inputType="textPassword"
         android:padding="@dimen/padding_field"
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText"
         android:textSize="@dimen/text_body_size"
-        android:layout_below="@+id/et_section"
+        android:layout_below="@+id/et_password_field2"
         tools:ignore="Autofill" />
 
     <TextView
@@ -131,7 +152,7 @@
         android:text="@string/text_privacy_and_policy"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/text_body_size"
-        android:layout_below="@+id/et_turno"
+        android:layout_below="@+id/et_password_field3"
         android:layout_centerHorizontal="true" />
 
     <Button
