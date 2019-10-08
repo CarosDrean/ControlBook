@@ -42,7 +42,7 @@
         android:layout_alignStart="@+id/tv_auth_title"/>
 
     <EditText
-        android:id="@+id/et_email_field"
+        android:id="@+id/et_name_aux"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -62,7 +62,7 @@
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/et_password_field"
+        android:id="@+id/et_lastname_aux"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
@@ -71,7 +71,6 @@
         android:background="@drawable/bg_auth_field"
         android:drawableStart="@drawable/icons8_pencil_24px"
         android:drawablePadding="@dimen/padding_field"
-
         android:fontFamily="@font/nunito_sans_reguler"
         android:hint="Apellidos"
         android:inputType="text"
@@ -79,11 +78,11 @@
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText"
         android:textSize="@dimen/text_body_size"
-        android:layout_below="@+id/et_email_field"
+        android:layout_below="@+id/et_name_aux"
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/et_password_field1"
+        android:id="@+id/et_dni_aux"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
@@ -99,11 +98,11 @@
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText"
         android:textSize="@dimen/text_body_size"
-        android:layout_below="@+id/et_password_field"
+        android:layout_below="@+id/et_lastname_aux"
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/et_password_field2"
+        android:id="@+id/et_user_aux"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
@@ -119,11 +118,11 @@
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText"
         android:textSize="@dimen/text_body_size"
-        android:layout_below="@+id/et_password_field1"
+        android:layout_below="@+id/et_dni_aux"
         tools:ignore="Autofill" />
 
     <EditText
-        android:id="@+id/et_password_field3"
+        android:id="@+id/et_password_aux"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
@@ -139,7 +138,7 @@
         android:textColor="@color/colorPrimaryText"
         android:textColorHint="@color/colorSecondaryText"
         android:textSize="@dimen/text_body_size"
-        android:layout_below="@+id/et_password_field2"
+        android:layout_below="@+id/et_user_aux"
         tools:ignore="Autofill" />
 
     <TextView
@@ -152,11 +151,11 @@
         android:text="@string/text_privacy_and_policy"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/text_body_size"
-        android:layout_below="@+id/et_password_field3"
+        android:layout_below="@+id/et_password_aux"
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/btn_sign_up"
+        android:id="@+id/btn_save_aux"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_auth"
