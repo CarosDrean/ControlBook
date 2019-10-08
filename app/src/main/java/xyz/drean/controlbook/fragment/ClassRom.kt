@@ -21,12 +21,6 @@ class ClassRom : Fragment() {
     ): View? {
         val v = inflater.inflate(R.layout.fragment_class_rom, container, false)
 
-        v.aula1.setOnClickListener {
-            val transaction = fragmentManager?.beginTransaction()
-            transaction?.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                ?.replace(R.id.nav_host_fragment, Students())?.commit()
-        }
-
         v.add_class_rom.setOnClickListener {
             val transaction = fragmentManager?.beginTransaction()
             transaction?.replace(R.id.nav_host_fragment, AddClassRom())?.commit()
