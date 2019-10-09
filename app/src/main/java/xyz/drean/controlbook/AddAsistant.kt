@@ -15,6 +15,8 @@ class AddAsistant : AppCompatActivity() {
         btn_save_aux.setOnClickListener {
             saveData()
         }
+
+        iv_back_reg.setOnClickListener { onBackPressed() }
     }
 
     private fun saveData() {

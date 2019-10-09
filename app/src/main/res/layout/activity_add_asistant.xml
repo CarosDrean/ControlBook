@@ -17,6 +17,17 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
+    <ImageView
+        android:id="@+id/iv_back_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:tint="#fff"
+        android:src="@drawable/ic_back"
+        tools:ignore="ContentDescription" />
+
     <TextView
         android:id="@+id/tv_auth_title"
         android:layout_width="wrap_content"

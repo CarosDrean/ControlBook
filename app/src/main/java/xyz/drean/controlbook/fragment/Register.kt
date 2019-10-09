@@ -42,6 +42,8 @@ class Register : Fragment() {
             activity?.startActivity(i)
         }
 
+        v.iv_back_aux.setOnClickListener { activity?.onBackPressed() }
+
         init(v)
         getData()
 

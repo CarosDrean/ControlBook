@@ -30,6 +30,8 @@ class ClassRomActivity : AppCompatActivity() {
             AddClassRom().show(supportFragmentManager, "Add Class Rom")
         }
 
+        iv_back_class.setOnClickListener { onBackPressed() }
+
         init()
         getData()
     }

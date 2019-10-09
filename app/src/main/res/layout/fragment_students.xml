@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_starter"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.Students">
 
@@ -21,8 +22,9 @@
         android:text="ASISTENCIAS"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         android:textColor="#fff"
-        android:layout_marginTop="10dp"
-        android:textSize="25sp"/>
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="23sp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_below="@+id/txt_students"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.Home">
@@ -15,8 +16,8 @@
         android:text="INICIO"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         android:textColor="#000"
-        android:layout_marginTop="10dp"
-        android:textSize="25sp"/>
+        android:layout_marginTop="15dp"
+        android:textSize="23sp"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
