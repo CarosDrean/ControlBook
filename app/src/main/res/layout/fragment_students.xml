@@ -9,25 +9,53 @@
     tools:context=".fragment.Students">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="212dp"
-        android:src="@drawable/ic_curvebacks_01"
-        android:scaleType="fitXY"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/txt_students"
+        android:id="@+id/iv_auth_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="ASISTENCIAS"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        android:textColor="#fff"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="23sp"/>
+        android:src="@drawable/ic_auth_background"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_below="@+id/txt_students"
+    <ImageView
+        android:id="@+id/iv_back_students"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:tint="#fff"
+        android:src="@drawable/ic_clear_24px"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_auth_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_auth"
+        android:layout_marginTop="@dimen/margin_auth_title"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="Registrar Asistencias"
+        android:textColor="@color/colorTextORIcon"
+        android:textSize="@dimen/text_title_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_auth_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans_reguler"
+        android:text="@string/text_sign_up_subtitle"
+        android:textColor="@color/colorTextORIcon"
+        android:textSize="@dimen/text_subtitle_size"
+        android:layout_below="@+id/tv_auth_title"
+        android:layout_alignStart="@+id/tv_auth_title"/>
+
+
+    <!--<androidx.cardview.widget.CardView
+        android:layout_below="@+id/tv_auth_subtitle"
         android:id="@+id/search_bar"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
@@ -76,12 +104,12 @@
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/search_bar"
+        android:layout_below="@+id/iv_auth_bg"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
@@ -93,159 +121,26 @@
             android:layout_marginTop="15dp"
             app:cardCornerRadius="30dp">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_students"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp"
-                    android:layout_marginLeft="5dp">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/profile"
-                        android:layout_centerVertical="true"/>
-
-                    <TextView
-                        android:id="@+id/txt_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="65dp"
-                        android:text="Romario Quispe"
-                        android:textColor="#000000"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/txt_msg"
-                        android:layout_below="@+id/txt_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_name"
-                        android:text="Turno: Mañana"
-                        android:textColor="#c6c6c6"
-                        android:textSize="16sp"
-                        android:layout_marginTop="2dp"/>
-
-                    <CheckBox
-                        android:id="@+id/icono_indicador_derecho"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true" />
-
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="#7C7C7C"
-                    android:orientation="vertical"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp"
-                    android:layout_marginLeft="5dp">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/profile"
-                        android:layout_centerVertical="true"/>
-
-                    <TextView
-                        android:id="@+id/txt_name1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="65dp"
-                        android:text="Romario Quispe"
-                        android:textColor="#000000"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/txt_msg1"
-                        android:layout_below="@+id/txt_name1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_name1"
-                        android:text="Turno: Mañana"
-                        android:textColor="#c6c6c6"
-                        android:textSize="16sp"
-                        android:layout_marginTop="2dp"/>
-
-                    <CheckBox
-                        android:id="@+id/icono_indicador_derecho1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true" />
-
-
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:background="#7C7C7C"
-                    android:orientation="vertical"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp"
-                    android:layout_marginLeft="5dp">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/profile"
-                        android:layout_centerVertical="true"/>
-
-                    <TextView
-                        android:id="@+id/txt_name2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="65dp"
-                        android:text="Romario Quispe"
-                        android:textColor="#000000"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/txt_msg2"
-                        android:layout_below="@+id/txt_name2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignLeft="@+id/txt_name2"
-                        android:text="Turno: Mañana"
-                        android:textColor="#c6c6c6"
-                        android:textSize="16sp"
-                        android:layout_marginTop="2dp"/>
-
-                    <CheckBox
-                        android:id="@+id/icono_indicador_derecho2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true" />
-
-
-                </RelativeLayout>
-
-            </LinearLayout>
+                android:layout_height="wrap_content"/>
 
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_24px"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:tint="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="16dp"/>
 
 </RelativeLayout>

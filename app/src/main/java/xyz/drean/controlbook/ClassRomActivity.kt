@@ -3,6 +3,7 @@ package xyz.drean.controlbook
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
@@ -47,13 +48,14 @@ class ClassRomActivity : AppCompatActivity() {
     }
 
     private fun getData() {
-        val query: Query = collClassrom as Query
+        val query: Query = collClassrom?.orderBy("name", Query.Direction.ASCENDING) as Query
 
         val options = FirestoreRecyclerOptions.Builder<ClassRom>()
             .setQuery(query, ClassRom::class.java)
             .build()
 
         adapter = AdapterClass(options, this)
+        classList?.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         classList?.adapter = adapter
     }
 
