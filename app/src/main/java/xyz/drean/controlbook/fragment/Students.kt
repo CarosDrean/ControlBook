@@ -72,7 +72,7 @@ class Students : BottomSheetDialogFragment() {
     }
 
     private fun getData(idClassRom: String, contx: String) {
-        val query: Query = collStudents?.orderBy("name", Query.Direction.ASCENDING)?.whereEqualTo("idClassRom", idClassRom) as Query
+        val query: Query = collStudents?.whereEqualTo("idClassRom", idClassRom) as Query
 
         val options = FirestoreRecyclerOptions.Builder<Student>()
             .setQuery(query, Student::class.java)

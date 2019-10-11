@@ -4,10 +4,7 @@ import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.CompoundButton
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
@@ -16,12 +13,15 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.android.synthetic.main.delete_item.view.*
+import kotlinx.android.synthetic.main.item_student.view.*
 
 import xyz.drean.controlbook.R
 import xyz.drean.controlbook.abstraction.DataBase
@@ -43,7 +43,7 @@ class AdapterStudent(
     }
 
     override fun onBindViewHolder(holder: StudentHolder, i: Int, model: Student) {
-        holder.bind(model)
+        holder.bind(model, i)
     }
 
     private fun lead(model: Student, assistance: CheckBox) {
@@ -122,15 +122,39 @@ class AdapterStudent(
         }
     }
 
+    private fun alertDelete(position: Int) {
+        val dialog = BottomSheetDialog(activity)
+        val inflater = activity.layoutInflater
+        val v = inflater.inflate(R.layout.delete_item, null)
+        val content = v.delete_item
+        content.setOnClickListener{
+            removeItem(position)
+            dialog.dismiss()
+        }
+        dialog.setContentView(v)
+        dialog.show()
+    }
+
+    private fun removeItem(position: Int) {
+        snapshots.getSnapshot(position).reference.delete()
+        Toast.makeText(activity, "¡Alumno Eliminado!", Toast.LENGTH_SHORT).show()
+    }
+
     inner class StudentHolderAsist(itemView: View) : StudentHolder(itemView) {
 
         private var name: TextView = itemView.findViewById(R.id.txt_name_student)
         private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student)
         private val assistance: CheckBox = itemView.findViewById(R.id.check_student)
+        private val content: RelativeLayout = itemView.content_student_asist
 
-        override fun bind(model: Student) {
+        override fun bind(model: Student, position: Int) {
             name.text = model.name
             lastname.text = model.lastname
+
+            content.setOnLongClickListener {
+                alertDelete(position)
+                true
+            }
 
             lead(model, assistance)
         }
@@ -142,7 +166,7 @@ class AdapterStudent(
         private val name: TextView = itemView.findViewById(R.id.txt_name_student_obs)
         private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student_obs)
 
-        override fun bind(model: Student) {
+        override fun bind(model: Student, position: Int) {
             name.text = model.name
             lastname.text = model.lastname
         }
@@ -151,5 +175,5 @@ class AdapterStudent(
 }
 
 open class StudentHolder (view: View): RecyclerView.ViewHolder(view) {
-    open fun bind(model: Student) {}
+    open fun bind(model: Student, position: Int) {}
 }
