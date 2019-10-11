@@ -50,7 +50,7 @@ class Students : BottomSheetDialogFragment() {
         v.iv_back_students.setOnClickListener { dismiss() }
 
         init(v)
-        getData(idClassRom!!)
+        getData(idClassRom!!, contx!!)
 
         return v
     }
@@ -65,14 +65,14 @@ class Students : BottomSheetDialogFragment() {
         classList?.layoutManager = llm
     }
 
-    private fun getData(idClassRom: String) {
+    private fun getData(idClassRom: String, contx: String) {
         val query: Query = collStudents?.orderBy("name", Query.Direction.ASCENDING)?.whereEqualTo("idClassRom", idClassRom) as Query
 
         val options = FirestoreRecyclerOptions.Builder<Student>()
             .setQuery(query, Student::class.java)
             .build()
 
-        adapter = AdapterStudent(options, activity)
+        adapter = AdapterStudent(options, activity!!, contx)
         classList?.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         classList?.adapter = adapter
     }

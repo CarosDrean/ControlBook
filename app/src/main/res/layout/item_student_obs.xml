@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:padding="15dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/profile"
+        android:layout_centerVertical="true"/>
+
+    <TextView
+        android:id="@+id/txt_lastname_student_obs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="65dp"
+        android:text="Romario Quispe"
+        android:textColor="#000000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/txt_name_student_obs"
+        android:layout_below="@+id/txt_lastname_student_obs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txt_lastname_student_obs"
+        android:text="Turno: Mañana"
+        android:textColor="#c6c6c6"
+        android:textSize="16sp"
+        android:layout_marginTop="2dp"/>
+
+    <ImageView
+        android:id="@+id/icono_indicador_derecho2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_keyboard_arrow_right_24px" />
+
+</RelativeLayout>

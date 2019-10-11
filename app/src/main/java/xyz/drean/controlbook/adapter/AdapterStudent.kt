@@ -116,7 +116,7 @@ class AdapterStudent(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentHolder {
         val va = LayoutInflater.from(parent.context).inflate(R.layout.item_student, parent, false)
-        val vo = LayoutInflater.from(parent.context).inflate(R.layout.item_student, parent, false)
+        val vo = LayoutInflater.from(parent.context).inflate(R.layout.item_student_obs, parent, false)
         return if (contx == "assistance") {
             StudentHolderAsist(va)
         } else {
@@ -141,9 +141,8 @@ class AdapterStudent(
 
     inner class StudentHolderObs(itemView: View) : StudentHolder(itemView) {
 
-        private val name: TextView = itemView.findViewById(R.id.txt_name_student)
-        private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student)
-        private val assistance: CheckBox = itemView.findViewById(R.id.check_student)
+        private val name: TextView = itemView.findViewById(R.id.txt_name_student_obs)
+        private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student_obs)
 
         override fun bind(student: Student) {
             name.text = student.name
