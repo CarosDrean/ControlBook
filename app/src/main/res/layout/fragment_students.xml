@@ -30,7 +30,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/tv_auth_title"
+        android:id="@+id/tv_students_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_auth"
@@ -50,8 +50,8 @@
         android:text="@string/text_sign_up_subtitle"
         android:textColor="@color/colorTextORIcon"
         android:textSize="@dimen/text_subtitle_size"
-        android:layout_below="@+id/tv_auth_title"
-        android:layout_alignStart="@+id/tv_auth_title"/>
+        android:layout_below="@+id/tv_students_title"
+        android:layout_alignStart="@+id/tv_students_title"/>
 
 
     <!--<androidx.cardview.widget.CardView

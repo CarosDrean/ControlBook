@@ -44,8 +44,6 @@ class AdapterStudent(
 
     override fun onBindViewHolder(holder: StudentHolder, i: Int, model: Student) {
         holder.bind(model)
-
-        // lead(model, holder)
     }
 
     private fun lead(model: Student, assistance: CheckBox) {
@@ -128,13 +126,13 @@ class AdapterStudent(
 
         private var name: TextView = itemView.findViewById(R.id.txt_name_student)
         private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student)
-        val assistance: CheckBox = itemView.findViewById(R.id.check_student)
+        private val assistance: CheckBox = itemView.findViewById(R.id.check_student)
 
-        override fun bind(student: Student) {
-            name.text = student.name
-            lastname.text = student.lastname
+        override fun bind(model: Student) {
+            name.text = model.name
+            lastname.text = model.lastname
 
-            lead(student, assistance)
+            lead(model, assistance)
         }
 
     }
@@ -144,9 +142,9 @@ class AdapterStudent(
         private val name: TextView = itemView.findViewById(R.id.txt_name_student_obs)
         private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student_obs)
 
-        override fun bind(student: Student) {
-            name.text = student.name
-            lastname.text = student.lastname
+        override fun bind(model: Student) {
+            name.text = model.name
+            lastname.text = model.lastname
         }
 
     }

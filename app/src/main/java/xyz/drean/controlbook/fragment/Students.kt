@@ -47,6 +47,12 @@ class Students : BottomSheetDialogFragment() {
             activity?.startActivity(i)
         }
 
+        if(contx == "assistance") {
+            v.tv_students_title.text = "Registrar Asistencias"
+        } else {
+            v.tv_students_title.text = "Registrar Observacion"
+        }
+
         v.iv_back_students.setOnClickListener { dismiss() }
 
         init(v)
