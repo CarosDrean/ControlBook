@@ -24,11 +24,14 @@ class Home : Fragment() {
         val v = inflater.inflate(R.layout.fragment_home, container, false)
 
         v.card_asistencias.setOnClickListener {
-            /*val transaction = fragmentManager?.beginTransaction()
-            transaction?.setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out)
-                ?.replace(R.id.nav_host_fragment, ClassRom())?.commit()*/
-
             val i = Intent(activity, ClassRomActivity::class.java)
+            i.putExtra("context", "assistance")
+            activity?.startActivity(i)
+        }
+
+        v.card_observation.setOnClickListener {
+            val i = Intent(activity, ClassRomActivity::class.java)
+            i.putExtra("context", "observation")
             activity?.startActivity(i)
         }
         return v

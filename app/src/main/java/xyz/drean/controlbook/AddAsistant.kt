@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_add_asistant.*
+import xyz.drean.controlbook.abstraction.DataBase
 import xyz.drean.controlbook.pojo.Asistant
 
 class AddAsistant : AppCompatActivity() {
@@ -20,7 +21,7 @@ class AddAsistant : AppCompatActivity() {
     }
 
     private fun saveData() {
-        val db = FirebaseFirestore.getInstance()
+        val db = DataBase(this)
 
         if(et_name_aux.text.toString() == "" ||
             et_lastname_aux.text.toString() == "" ||
@@ -37,15 +38,9 @@ class AddAsistant : AppCompatActivity() {
                 et_user_aux.text.toString(),
                 et_password_aux.text.toString()
             )
-            db.collection("assitants")
-                .add(asistant)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "¡Auxiliar Guardado!", Toast.LENGTH_SHORT).show()
-                    onBackPressed()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "¡Ocurrio un error al guardar los datos!", Toast.LENGTH_SHORT).show()
-                }
+
+            db.addItem(asistant, asistant.id!!, "assitants", "¡Auxiliar Guardado!")
+            onBackPressed()
         }
     }
 }

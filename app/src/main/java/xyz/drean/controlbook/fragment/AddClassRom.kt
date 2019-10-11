@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_add_class_rom.view.*
 
 import xyz.drean.controlbook.R
+import xyz.drean.controlbook.abstraction.DataBase
 import xyz.drean.controlbook.pojo.ClassRom
 
 /**
@@ -33,7 +34,7 @@ class AddClassRom : BottomSheetDialogFragment() {
     }
 
     private fun saveData(v: View) {
-        val db = FirebaseFirestore.getInstance()
+        val db = DataBase(activity!!)
 
         if(v.et_name_class.text.toString() == "" ||
             v.et_section.text.toString() == "" ||
@@ -48,16 +49,8 @@ class AddClassRom : BottomSheetDialogFragment() {
                 v.et_grado.text.toString(),
                 v.et_turno.text.toString()
             )
-
-            db.collection("classroms")
-                .add(classRom)
-                .addOnSuccessListener {
-                    Toast.makeText(context, "¡Aula Guardada!", Toast.LENGTH_SHORT).show()
-                    dismiss()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(context, "¡Ocurrio un error al guardar los datos!", Toast.LENGTH_SHORT).show()
-                }
+            db.addItem(classRom, classRom.id!!, "classroms", "¡Aula Guardada!")
+            dismiss()
         }
 
     }

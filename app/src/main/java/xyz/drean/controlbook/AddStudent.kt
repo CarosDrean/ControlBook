@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_add_student.*
+import xyz.drean.controlbook.abstraction.DataBase
 import xyz.drean.controlbook.pojo.Student
 
 class AddStudent : AppCompatActivity() {
@@ -13,37 +14,30 @@ class AddStudent : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_student)
 
-        val id = intent.getStringExtra("id")
+        val idAula = intent.getStringExtra("id")
 
         btn_save_student.setOnClickListener {
-            saveData(id)
+            saveData(idAula)
         }
     }
 
     private fun saveData(idAula: String) {
-        val db = FirebaseFirestore.getInstance()
+        val db = DataBase(this)
 
         if(et_name_student.text.toString() == "" ||
             et_lastname_student.text.toString() == "" ||
             et_dni_student.text.toString() == "" ){
             Toast.makeText(this, "¡Llene todos los campos!", Toast.LENGTH_SHORT).show()
         } else {
-            val asistant = Student(
+            val student = Student(
                 System.currentTimeMillis().toString(),
                 et_name_student.text.toString(),
                 et_lastname_student.text.toString(),
                 et_dni_student.text.toString(),
                 idAula
             )
-            db.collection("students")
-                .add(asistant)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "¡Estudiante Guardado!", Toast.LENGTH_SHORT).show()
-                    onBackPressed()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "¡Ocurrio un error al guardar los datos!", Toast.LENGTH_SHORT).show()
-                }
+            db.addItem(student, student.id!!, "students", "¡Estudiante Guardado!")
+            onBackPressed()
         }
     }
 }

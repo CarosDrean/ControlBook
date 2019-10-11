@@ -27,6 +27,8 @@ class ClassRomActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_class_rom)
 
+        val contx = intent.getStringExtra("context")
+
         add_class_rom.setOnClickListener {
             AddClassRom().show(supportFragmentManager, "Add Class Rom")
         }
@@ -34,7 +36,7 @@ class ClassRomActivity : AppCompatActivity() {
         iv_back_class.setOnClickListener { onBackPressed() }
 
         init()
-        getData()
+        getData(contx)
     }
 
     private fun init() {
@@ -47,14 +49,14 @@ class ClassRomActivity : AppCompatActivity() {
         classList?.layoutManager = llm
     }
 
-    private fun getData() {
+    private fun getData(contx: String) {
         val query: Query = collClassrom?.orderBy("name", Query.Direction.ASCENDING) as Query
 
         val options = FirestoreRecyclerOptions.Builder<ClassRom>()
             .setQuery(query, ClassRom::class.java)
             .build()
 
-        adapter = AdapterClass(options, this)
+        adapter = AdapterClass(options, this, contx)
         classList?.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         classList?.adapter = adapter
     }

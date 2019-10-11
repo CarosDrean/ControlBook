@@ -25,10 +25,12 @@ import xyz.drean.controlbook.pojo.ClassRom;
 public class AdapterClass extends FirestoreRecyclerAdapter<ClassRom, AdapterClass.ClassHolder> {
 
     private Activity activity;
+    private String contx;
 
-    public AdapterClass(@NonNull FirestoreRecyclerOptions<ClassRom> options, Activity activity) {
+    public AdapterClass(@NonNull FirestoreRecyclerOptions<ClassRom> options, Activity activity, String contx) {
         super(options);
         this.activity = activity;
+        this.contx = contx;
     }
 
     @Override
@@ -39,11 +41,7 @@ public class AdapterClass extends FirestoreRecyclerAdapter<ClassRom, AdapterClas
         holder.content.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle args = new Bundle();
-                args.putString("id", model.getId());
-                Students students = new Students();
-                students.setArguments(args);
-                students.show(((AppCompatActivity)activity).getSupportFragmentManager(), "Add Class Rom");
+                lead(model.getId());
             }
         });
 
@@ -54,6 +52,15 @@ public class AdapterClass extends FirestoreRecyclerAdapter<ClassRom, AdapterClas
                 return true;
             }
         });
+    }
+
+    private void lead(String idClass) {
+        Bundle args = new Bundle();
+        args.putString("id", idClass);
+        args.putString("contx", contx);
+        Students students = new Students();
+        students.setArguments(args);
+        students.show(((AppCompatActivity)activity).getSupportFragmentManager(), "Add Class Rom");
     }
 
     @NonNull

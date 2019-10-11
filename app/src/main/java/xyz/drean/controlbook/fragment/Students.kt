@@ -39,6 +39,7 @@ class Students : BottomSheetDialogFragment() {
         val v = inflater.inflate(R.layout.fragment_students, container, false)
 
         val idClassRom = arguments?.getString("id")
+        val contx = arguments?.getString("contx")
 
         v.add_student.setOnClickListener {
             val i = Intent(activity, AddStudent::class.java)

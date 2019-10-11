@@ -13,7 +13,7 @@
         android:layout_centerVertical="true"/>
 
     <TextView
-        android:id="@+id/txt_name_student"
+        android:id="@+id/txt_lastname_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="65dp"
@@ -22,11 +22,11 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/txt_lastname_student"
-        android:layout_below="@+id/txt_name_student"
+        android:id="@+id/txt_name_student"
+        android:layout_below="@+id/txt_lastname_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/txt_name_student"
+        android:layout_alignLeft="@+id/txt_lastname_student"
         android:text="Turno: Mañana"
         android:textColor="#c6c6c6"
         android:textSize="16sp"
