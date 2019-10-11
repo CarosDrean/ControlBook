@@ -22,6 +22,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import kotlinx.android.synthetic.main.delete_item.view.*
 import kotlinx.android.synthetic.main.item_student.view.*
+import kotlinx.android.synthetic.main.item_student_obs.view.*
 
 import xyz.drean.controlbook.R
 import xyz.drean.controlbook.abstraction.DataBase
@@ -165,10 +166,16 @@ class AdapterStudent(
 
         private val name: TextView = itemView.findViewById(R.id.txt_name_student_obs)
         private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student_obs)
+        private val content: RelativeLayout = itemView.content_student_obs
 
         override fun bind(model: Student, position: Int) {
             name.text = model.name
             lastname.text = model.lastname
+
+            content.setOnLongClickListener {
+                alertDelete(position)
+                true
+            }
         }
 
     }
