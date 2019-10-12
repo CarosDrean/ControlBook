@@ -134,7 +134,7 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_view"
+                        android:id="@+id/card_meeting"
                         style="@style/Widget.MaterialComponents.CardView"
                         android:layout_width="130dp"
                         android:layout_height="210dp"

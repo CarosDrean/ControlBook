@@ -1,10 +1,12 @@
 package xyz.drean.controlbook.adapter
 
 import android.app.Activity
+import android.app.Dialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
@@ -20,7 +22,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.android.synthetic.main.add_observation.view.*
 import kotlinx.android.synthetic.main.delete_item.view.*
+import kotlinx.android.synthetic.main.delete_item.view.delete_item
 import kotlinx.android.synthetic.main.item_student.view.*
 import kotlinx.android.synthetic.main.item_student_obs.view.*
 
@@ -36,12 +40,8 @@ class AdapterStudent(
     private val contx: String
 ) : FirestoreRecyclerAdapter<Student, StudentHolder>(options) {
 
-    private val db: DataBase
+    private val db: DataBase = DataBase(activity)
     private val coll = "observations"
-
-    init {
-        db = DataBase(activity)
-    }
 
     override fun onBindViewHolder(holder: StudentHolder, i: Int, model: Student) {
         holder.bind(model, i)
@@ -141,6 +141,78 @@ class AdapterStudent(
         Toast.makeText(activity, "¡Alumno Eliminado!", Toast.LENGTH_SHORT).show()
     }
 
+    private fun alertAddObservation(idStudent: String?) {
+        val dialog: AlertDialog.Builder = AlertDialog.Builder(activity)
+        val inflater = activity.layoutInflater
+        val v = inflater.inflate(R.layout.add_observation, null)
+
+        val dat = DataBase(activity)
+
+        dialog.setView(v)
+        val alert = dialog.create()
+
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection(coll)
+            .whereEqualTo("date", dat.getDate())
+            .whereEqualTo("idStudent", idStudent)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    assert(task.result != null)
+                    for (value in task.result!!) {
+                        val obs = value.toObject(Obervation::class.java)
+                        v.et_add_obs.setText(obs.observation)
+                    }
+                }
+            }
+
+        v.save_obs.setOnClickListener {
+            checkObservation(idStudent, v.et_add_obs.text.toString(), dat.getDate())
+            alert.dismiss()
+        }
+
+        alert.show()
+    }
+
+    private fun checkObservation(idStudent: String?, observation: String, date: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection(coll)
+            .whereEqualTo("date", date)
+            .whereEqualTo("idStudent", idStudent)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    assert(task.result != null)
+                    var au = 0
+                    for (value in task.result!!) {
+                        au = 1
+                        val obs = value.toObject(Obervation::class.java)
+                        obs.observation = observation
+                        db.collection(coll).document(value.id).set(obs)
+                    }
+                    if (au == 0) {
+                        saveObservation(idStudent, observation, date)
+                    }
+                }
+            }
+
+
+    }
+
+    private fun saveObservation(idStudent: String?, observation: String, date: String) {
+        val obs = Obervation()
+        obs.id = System.currentTimeMillis().toString()
+        obs.date = date
+        obs.observation = observation
+        obs.idStudent = idStudent
+
+        assert(obs.id != null)
+
+        db.addItem(obs, obs.id!!, coll, "¡Observacion Guardada!")
+    }
+
     inner class StudentHolderAsist(itemView: View) : StudentHolder(itemView) {
 
         private var name: TextView = itemView.findViewById(R.id.txt_name_student)
@@ -171,6 +243,8 @@ class AdapterStudent(
         override fun bind(model: Student, position: Int) {
             name.text = model.name
             lastname.text = model.lastname
+
+            content.setOnClickListener { alertAddObservation(model.id) }
 
             content.setOnLongClickListener {
                 alertDelete(position)
