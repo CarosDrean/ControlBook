@@ -1,6 +1,6 @@
 package xyz.drean.controlbook.pojo
 
-class Obervation {
+class Observation {
 
     var id: String? = null
     var observation: String? = null

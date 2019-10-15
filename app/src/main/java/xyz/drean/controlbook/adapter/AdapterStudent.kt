@@ -1,7 +1,7 @@
 package xyz.drean.controlbook.adapter
 
 import android.app.Activity
-import android.app.Dialog
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,27 +11,17 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.OnFailureListener
-import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.FirebaseFirestoreException
-import com.google.firebase.firestore.QueryDocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.add_observation.view.*
-import kotlinx.android.synthetic.main.delete_item.view.*
 import kotlinx.android.synthetic.main.delete_item.view.delete_item
 import kotlinx.android.synthetic.main.item_student.view.*
 import kotlinx.android.synthetic.main.item_student_obs.view.*
+import xyz.drean.controlbook.DetailStudent
 
 import xyz.drean.controlbook.R
 import xyz.drean.controlbook.abstraction.DataBase
-import xyz.drean.controlbook.adapter.AdapterStudent.StudentHolderAsist
-import xyz.drean.controlbook.pojo.Obervation
+import xyz.drean.controlbook.pojo.Observation
 import xyz.drean.controlbook.pojo.Student
 
 class AdapterStudent(
@@ -40,8 +30,9 @@ class AdapterStudent(
     private val contx: String
 ) : FirestoreRecyclerAdapter<Student, StudentHolder>(options) {
 
-    private val db: DataBase = DataBase(activity)
+    private val dab: DataBase = DataBase(activity)
     private val coll = "observations"
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onBindViewHolder(holder: StudentHolder, i: Int, model: Student) {
         holder.bind(model, i)
@@ -49,68 +40,16 @@ class AdapterStudent(
 
     private fun lead(model: Student, assistance: CheckBox) {
         if (contx == "assistance") {
-            verifyAssistance(model.id, db.getDate(), assistance)
+            verifyAssistance(model.id, dab.getDate(), assistance)
 
             assistance.setOnCheckedChangeListener { buttonView, isChecked ->
                 checkAssistance(
                     model.id,
                     isChecked.toString(),
-                    db.getDate()
+                    dab.getDate()
                 )
             }
         }
-    }
-
-    private fun verifyAssistance(idStudent: String?, date: String, box: CheckBox) {
-        val dab = FirebaseFirestore.getInstance()
-        dab.collection(coll)
-            .whereEqualTo("date", date)
-            .whereEqualTo("idStudent", idStudent)
-            .addSnapshotListener { value, e ->
-                assert(value != null)
-                for (doc in value!!) {
-                    val obs = doc.toObject(Obervation::class.java)
-                    box.isChecked = java.lang.Boolean.valueOf(obs.assistance)
-                }
-            }
-    }
-
-    private fun checkAssistance(idStudent: String?, assistance: String, date: String) {
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection(coll)
-            .whereEqualTo("date", date)
-            .whereEqualTo("idStudent", idStudent)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    assert(task.result != null)
-                    var au = 0
-                    for (value in task.result!!) {
-                        au = 1
-                        val obs = value.toObject(Obervation::class.java)
-                        obs.assistance = assistance
-                        db.collection(coll).document(value.id).set(obs)
-                    }
-                    if (au == 0) {
-                        saveAssistance(idStudent, assistance, date)
-                    }
-                }
-            }
-
-
-    }
-
-    private fun saveAssistance(idStudent: String?, assistance: String, date: String) {
-        val obs = Obervation()
-        obs.id = System.currentTimeMillis().toString()
-        obs.date = date
-        obs.assistance = assistance
-        obs.idStudent = idStudent
-
-        assert(obs.id != null)
-
-        db.addItem(obs, obs.id!!, coll, "¡Asistencia Guardada!")
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentHolder {
@@ -136,9 +75,58 @@ class AdapterStudent(
         dialog.show()
     }
 
+    private fun verifyAssistance(idStudent: String?, date: String, box: CheckBox) {
+        assistance(idStudent, date)
+            .addSnapshotListener { value, e ->
+                assert(value != null)
+                for (doc in value!!) {
+                    val obs = doc.toObject(Observation::class.java)
+                    box.isChecked = java.lang.Boolean.valueOf(obs.assistance)
+                }
+            }
+    }
+
+    private fun assistance(idStudent: String?, date: String): Query {
+        return db.collection(coll)
+            .whereEqualTo("date", date)
+            .whereEqualTo("idStudent", idStudent)
+    }
+
+    private fun saveAssistance(idStudent: String?, assistance: String, date: String) {
+        val obs = Observation()
+        obs.id = System.currentTimeMillis().toString()
+        obs.date = date
+        obs.assistance = assistance
+        obs.idStudent = idStudent
+
+        assert(obs.id != null)
+
+        dab.addItem(obs, obs.id!!, coll, "¡Asistencia Guardada!")
+    }
+
     private fun removeItem(position: Int) {
         snapshots.getSnapshot(position).reference.delete()
         Toast.makeText(activity, "¡Alumno Eliminado!", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun checkAssistance(idStudent: String?, assistance: String, date: String) {
+        assistance(idStudent, date)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    assert(task.result != null)
+                    var au = 0
+                    for (value in task.result!!) {
+                        au = 1
+                        val obs = value.toObject(Observation::class.java)
+                        obs.assistance = assistance
+                        db.collection(coll).document(value.id).set(obs)
+                    }
+                    if (au == 0) {
+                        saveAssistance(idStudent, assistance, date)
+                    }
+                }
+            }
     }
 
     private fun alertAddObservation(idStudent: String?) {
@@ -151,17 +139,13 @@ class AdapterStudent(
         dialog.setView(v)
         val alert = dialog.create()
 
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection(coll)
-            .whereEqualTo("date", dat.getDate())
-            .whereEqualTo("idStudent", idStudent)
+        assistance(idStudent, dab.getDate())
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     assert(task.result != null)
                     for (value in task.result!!) {
-                        val obs = value.toObject(Obervation::class.java)
+                        val obs = value.toObject(Observation::class.java)
                         v.et_add_obs.setText(obs.observation)
                     }
                 }
@@ -176,11 +160,7 @@ class AdapterStudent(
     }
 
     private fun checkObservation(idStudent: String?, observation: String, date: String) {
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection(coll)
-            .whereEqualTo("date", date)
-            .whereEqualTo("idStudent", idStudent)
+        assistance(idStudent, date)
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -188,7 +168,7 @@ class AdapterStudent(
                     var au = 0
                     for (value in task.result!!) {
                         au = 1
-                        val obs = value.toObject(Obervation::class.java)
+                        val obs = value.toObject(Observation::class.java)
                         obs.observation = observation
                         db.collection(coll).document(value.id).set(obs)
                     }
@@ -197,12 +177,10 @@ class AdapterStudent(
                     }
                 }
             }
-
-
     }
 
     private fun saveObservation(idStudent: String?, observation: String, date: String) {
-        val obs = Obervation()
+        val obs = Observation()
         obs.id = System.currentTimeMillis().toString()
         obs.date = date
         obs.observation = observation
@@ -210,7 +188,7 @@ class AdapterStudent(
 
         assert(obs.id != null)
 
-        db.addItem(obs, obs.id!!, coll, "¡Observacion Guardada!")
+        dab.addItem(obs, obs.id!!, coll, "¡Observacion Guardada!")
     }
 
     inner class StudentHolderAsist(itemView: View) : StudentHolder(itemView) {
@@ -239,6 +217,7 @@ class AdapterStudent(
         private val name: TextView = itemView.findViewById(R.id.txt_name_student_obs)
         private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student_obs)
         private val content: RelativeLayout = itemView.content_student_obs
+        private val detail: ImageView = itemView.icon_detail_student
 
         override fun bind(model: Student, position: Int) {
             name.text = model.name
@@ -249,6 +228,14 @@ class AdapterStudent(
             content.setOnLongClickListener {
                 alertDelete(position)
                 true
+            }
+
+            detail.setOnClickListener {
+                val i = Intent(activity, DetailStudent::class.java)
+                i.putExtra("id", model.id)
+                i.putExtra("name", model.name)
+                i.putExtra("lastname", model.lastname)
+                activity.startActivity(i)
             }
         }
 
