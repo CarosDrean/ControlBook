@@ -2,7 +2,6 @@ package xyz.drean.controlbook
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,10 +12,9 @@ import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_class_rom.*
 import xyz.drean.controlbook.adapter.AdapterClass
 import xyz.drean.controlbook.fragment.AddClassRom
-import xyz.drean.controlbook.fragment.Students
 import xyz.drean.controlbook.pojo.ClassRom
 
-class ClassRomActivity : AppCompatActivity() {
+class ClassRoms : AppCompatActivity() {
 
     private var db: FirebaseFirestore? = null
     private var collClassrom: CollectionReference? = null

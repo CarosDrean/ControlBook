@@ -3,10 +3,9 @@ package xyz.drean.controlbook
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_add_asistant.*
 import xyz.drean.controlbook.abstraction.DataBase
-import xyz.drean.controlbook.pojo.Asistant
+import xyz.drean.controlbook.pojo.Assistant
 
 class AddAsistant : AppCompatActivity() {
 
@@ -30,7 +29,7 @@ class AddAsistant : AppCompatActivity() {
             et_password_aux.text.toString() == ""){
             Toast.makeText(this, "¡Llene todos los campos!", Toast.LENGTH_SHORT).show()
         } else {
-            val asistant = Asistant(
+            val asistant = Assistant(
                 System.currentTimeMillis().toString(),
                 et_name_aux.text.toString(),
                 et_lastname_aux.text.toString(),

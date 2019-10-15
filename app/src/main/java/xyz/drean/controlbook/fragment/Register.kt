@@ -18,8 +18,7 @@ import xyz.drean.controlbook.AddAsistant
 
 import xyz.drean.controlbook.R
 import xyz.drean.controlbook.adapter.AdapterAsistant
-import xyz.drean.controlbook.adapter.AdapterClass
-import xyz.drean.controlbook.pojo.Asistant
+import xyz.drean.controlbook.pojo.Assistant
 
 /**
  * A simple [Fragment] subclass.
@@ -63,8 +62,8 @@ class Register : Fragment() {
     private fun getData() {
         val query: Query = collAsistant as Query
 
-        val options = FirestoreRecyclerOptions.Builder<Asistant>()
-            .setQuery(query, Asistant::class.java)
+        val options = FirestoreRecyclerOptions.Builder<Assistant>()
+            .setQuery(query, Assistant::class.java)
             .build()
 
         adapter = AdapterAsistant(options, activity)

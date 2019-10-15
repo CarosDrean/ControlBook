@@ -13,19 +13,19 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import xyz.drean.controlbook.R;
-import xyz.drean.controlbook.pojo.Asistant;
+import xyz.drean.controlbook.pojo.Assistant;
 
-public class AdapterAsistant extends FirestoreRecyclerAdapter<Asistant, AdapterAsistant.AsistantHolder> {
+public class AdapterAsistant extends FirestoreRecyclerAdapter<Assistant, AdapterAsistant.AsistantHolder> {
 
     private Activity activity;
 
-    public AdapterAsistant(@NonNull FirestoreRecyclerOptions<Asistant> options, Activity activity) {
+    public AdapterAsistant(@NonNull FirestoreRecyclerOptions<Assistant> options, Activity activity) {
         super(options);
         this.activity = activity;
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull AsistantHolder holder, int i, @NonNull Asistant model) {
+    protected void onBindViewHolder(@NonNull AsistantHolder holder, int i, @NonNull Assistant model) {
         holder.name.setText(model.getName());
         holder.user.setText(model.getUser());
     }

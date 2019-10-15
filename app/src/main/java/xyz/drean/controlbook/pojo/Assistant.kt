@@ -1,6 +1,6 @@
 package xyz.drean.controlbook.pojo
 
-class Asistant {
+class Assistant {
     var id: String? = null
     var name: String? = null
     var lastname: String? = null

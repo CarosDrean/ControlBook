@@ -1,14 +1,399 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".fragment.Profile">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Profile" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="PERFIL"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="#000"
+                android:layout_marginTop="15dp"
+                android:textSize="23sp"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Control"
+                android:layout_marginTop="10dp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:textColor="@color/material_blue"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                style="@style/Widget.MaterialComponents.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="5dp"
+                app:cardBackgroundColor="@color/material_blue"
+                app:cardCornerRadius="30dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/profile"
+                        android:layout_marginTop="8dp"
+                        app:civ_border_color="#fff"
+                        app:civ_border_width="2dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/name_aux"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Romer Cinc"
+                            android:textColor="#FFFFFF"
+                            android:textSize="23sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:text="AUXILIAR"
+                            android:textStyle="italic"
+                            android:textAllCaps="false"
+                            android:textColor="#fff"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Operaciones Frecuentes"
+                    android:layout_marginStart="20dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/black" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="5dp" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/card_meeting"
+                                style="@style/Widget.MaterialComponents.CardView"
+                                android:layout_width="130dp"
+                                android:layout_height="170dp"
+                                android:backgroundTint="@color/green_success"
+                                android:layout_marginRight="10dp"
+                                app:cardCornerRadius="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/day_name_text_view"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:textColor="@android:color/white"
+                                        android:text="EDITAR DATOS"
+                                        android:textStyle="italic" />
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/weather_image_view"
+                                        android:layout_width="64dp"
+                                        android:layout_height="64dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:src="@drawable/icons8_crowd_100px"/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/temp_text_view"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="COMENZAR"
+                                        android:textSize="14sp"
+                                        android:gravity="center"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                        android:textColor="@android:color/white" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <View
+                                android:id="@+id/shadow_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="15dp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/card_logout"
+                                style="@style/Widget.MaterialComponents.CardView"
+                                android:layout_width="130dp"
+                                android:layout_height="170dp"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:backgroundTint="@color/colorAccent"
+                                android:layout_marginRight="10dp"
+                                app:cardCornerRadius="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/day_name_text_view1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:textColor="@android:color/white"
+                                        android:text="CERRAR SESSION"
+                                        android:textStyle="italic" />
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/weather_image_view1"
+                                        android:layout_width="64dp"
+                                        android:layout_height="64dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:src="@drawable/icons8_checklist_100px"/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/temp_text_view1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="COMENZAR"
+                                        android:textSize="14sp"
+                                        android:gravity="center"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                        android:textColor="@android:color/white" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <View
+                                android:id="@+id/shadow_view1"
+                                android:layout_width="match_parent"
+                                android:layout_height="15dp" />
+
+                        </LinearLayout>
+
+                        <!--<LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/card_observation"
+                                style="@style/Widget.MaterialComponents.CardView"
+                                android:layout_width="130dp"
+                                android:layout_height="210dp"
+                                android:layout_marginRight="10dp"
+                                android:backgroundTint="@color/yellow_success"
+                                app:cardCornerRadius="20dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/day_name_text_view2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="center"
+                                        android:textColor="@android:color/white"
+                                        android:text="OBSERVACIONES"
+                                        android:textStyle="italic" />
+
+                                    <androidx.appcompat.widget.AppCompatImageView
+                                        android:id="@+id/weather_image_view2"
+                                        android:layout_width="64dp"
+                                        android:layout_height="64dp"
+                                        android:layout_marginBottom="10dp"
+                                        android:layout_marginTop="10dp"
+                                        android:src="@drawable/icons8_add_file_100px"/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/temp_text_view2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="COMENZAR"
+                                        android:textSize="14sp"
+                                        android:gravity="center"
+                                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                                        android:textColor="@android:color/white" />
+
+                                </LinearLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <View
+                                android:id="@+id/shadow_view2"
+                                android:layout_width="match_parent"
+                                android:layout_height="15dp" />
+
+                        </LinearLayout>-->
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="15dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_edac"
+                    android:text="Editar Acceso"
+                    android:layout_marginStart="20dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/black" />
+
+                <EditText
+                    android:id="@+id/et_user_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginStart="@dimen/margin_auth"
+                    android:layout_marginEnd="@dimen/margin_auth"
+                    android:background="@drawable/bg_auth_field"
+                    android:drawableStart="@drawable/icons8_add_user_24px"
+                    android:drawablePadding="@dimen/padding_field"
+                    android:fontFamily="@font/nunito_sans_reguler"
+                    android:hint="user"
+                    android:inputType="text"
+                    android:padding="@dimen/padding_field"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorSecondaryText"
+                    android:textSize="@dimen/text_body_size"
+                    android:layout_below="@+id/tv_edac"
+                    tools:ignore="Autofill" />
+
+                <EditText
+                    android:id="@+id/et_password_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_default"
+                    android:layout_marginStart="@dimen/margin_auth"
+                    android:layout_marginEnd="@dimen/margin_auth"
+                    android:background="@drawable/bg_auth_field"
+                    android:drawableStart="@drawable/icons8_key_2_24px"
+                    android:drawablePadding="@dimen/padding_field"
+                    android:fontFamily="@font/nunito_sans_reguler"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:padding="@dimen/padding_field"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorSecondaryText"
+                    android:textSize="@dimen/text_body_size"
+                    android:layout_below="@+id/et_user_profile"
+                    tools:ignore="Autofill" />
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/save_acces_assist"
+                style="@style/Widget.MaterialComponents.CardView"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/material_blue"
+                app:cardCornerRadius="25dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="GUARDAR"
+                    android:textSize="17sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    android:textColor="@android:color/white" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
