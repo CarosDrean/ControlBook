@@ -7,55 +7,109 @@
     android:layout_height="match_parent"
     tools:context=".ClassRoms">
 
-    <ImageView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="212dp"
-        android:src="@drawable/ic_curvebacks_01"
-        android:scaleType="fitXY"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/iv_back_class"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerCrop"
-        android:tint="#fff"
-        android:src="@drawable/ic_back"
-        tools:ignore="ContentDescription" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="SELECCIONE AULA"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-            android:textColor="#fff"
-            android:layout_marginTop="25dp"
-            android:textSize="23sp"/>
-
-        <androidx.cardview.widget.CardView
-            style="@style/Widget.MaterialComponents.CardView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="15dp"
-            app:cardCornerRadius="30dp">
+            android:layout_height="wrap_content">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_classrom"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="212dp"
+                android:src="@drawable/ic_curvebacks_01"
+                android:scaleType="fitXY"/>
 
-        </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/iv_back_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerCrop"
+                android:tint="#fff"
+                android:src="@drawable/ic_back"
+                tools:ignore="ContentDescription" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="SELECCIONE AULA"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                    android:textColor="#fff"
+                    android:layout_marginTop="25dp"
+                    android:textSize="23sp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_calendar"
+                    style="@style/Widget.MaterialComponents.CardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="15dp"
+                    app:cardCornerRadius="30dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_cal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="Fecha: "
+                            android:textSize="16sp"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                            android:textColor="@android:color/black" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="5dp" />
+
+                        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:mcv_showOtherDates="all"
+                            android:id="@+id/calendar_class"
+                            app:mcv_selectionColor="@color/colorAccent"/>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    style="@style/Widget.MaterialComponents.CardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="50dp"
+                    app:cardCornerRadius="30dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/list_classrom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_class_rom"

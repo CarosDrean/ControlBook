@@ -1,6 +1,7 @@
 package xyz.drean.controlbook.adapter
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -33,6 +34,18 @@ class AdapterStudent(
     private val dab: DataBase = DataBase(activity)
     private val coll = "observations"
     private val db = FirebaseFirestore.getInstance()
+    private var date: String? = null
+
+    init {
+        date = getPreference("dateAssistance")
+        Toast.makeText(activity, date, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun getPreference(field: String): String {
+        val sp = activity.getSharedPreferences("config", Context.MODE_PRIVATE)
+        val date = sp?.getString(field, dab.getDate())
+        return date!!
+    }
 
     override fun onBindViewHolder(holder: StudentHolder, i: Int, model: Student) {
         holder.bind(model, i)
@@ -40,13 +53,13 @@ class AdapterStudent(
 
     private fun lead(model: Student, assistance: CheckBox) {
         if (contx == "assistance") {
-            verifyAssistance(model.id, dab.getDate(), assistance)
+            verifyAssistance(model.id, date!!, assistance)
 
             assistance.setOnCheckedChangeListener { buttonView, isChecked ->
                 checkAssistance(
                     model.id,
                     isChecked.toString(),
-                    dab.getDate()
+                    date!!
                 )
             }
         }
@@ -218,6 +231,7 @@ class AdapterStudent(
         private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student_obs)
         private val content: RelativeLayout = itemView.content_student_obs
         private val detail: ImageView = itemView.icon_detail_student
+        private val back: ImageView = itemView.iv_back_add_obs
 
         override fun bind(model: Student, position: Int) {
             name.text = model.name
@@ -237,6 +251,8 @@ class AdapterStudent(
                 i.putExtra("lastname", model.lastname)
                 activity.startActivity(i)
             }
+
+            back.setOnClickListener { activity.onBackPressed() }
         }
 
     }
