@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.Parents">
+
+    <ImageView
+        android:id="@+id/iv_auth_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_auth_background"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/iv_back_parents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        android:tint="#fff"
+        android:src="@drawable/ic_clear_24px"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tv_students_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_auth"
+        android:layout_marginTop="@dimen/margin_auth_title"
+        android:fontFamily="@font/nunito_sans_bold"
+        android:text="Seleccionar Padre"
+        android:textColor="@color/colorTextORIcon"
+        android:textSize="@dimen/text_title_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_auth_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_sans_reguler"
+        android:text="@string/text_sign_up_subtitle"
+        android:textColor="@color/colorTextORIcon"
+        android:textSize="@dimen/text_subtitle_size"
+        android:layout_below="@+id/tv_students_title"
+        android:layout_alignStart="@+id/tv_students_title"/>
+
+
+    <!--<androidx.cardview.widget.CardView
+        android:layout_below="@+id/tv_auth_subtitle"
+        android:id="@+id/search_bar"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        style="@style/Widget.MaterialComponents.CardView"
+        app:cardBackgroundColor="@android:color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="3dp"
+        app:layout_collapseMode="pin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:tint="#666666"
+                android:src="@drawable/ic_search" />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:hint="Buscar Alumnos"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+
+                android:singleLine="true">
+
+                <requestFocus />
+
+            </EditText>
+
+            <View
+                android:layout_width="15dp"
+                android:layout_height="0dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/iv_auth_bg"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginTop="15dp"
+            app:cardCornerRadius="30dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_parents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_add_24px"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:tint="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingBottom="16dp"/>
+
+</RelativeLayout>

@@ -34,7 +34,8 @@ class AddStudent : AppCompatActivity() {
                 et_name_student.text.toString(),
                 et_lastname_student.text.toString(),
                 et_dni_student.text.toString(),
-                idAula
+                idAula,
+                ""
             )
             db.addItem(student, student.id!!, "students", "¡Estudiante Guardado!")
             onBackPressed()

@@ -169,6 +169,8 @@ class AdapterStudent(
             alert.dismiss()
         }
 
+        v.iv_back_add_obs.setOnClickListener { alert.dismiss() }
+
         alert.show()
     }
 
@@ -231,7 +233,6 @@ class AdapterStudent(
         private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student_obs)
         private val content: RelativeLayout = itemView.content_student_obs
         private val detail: ImageView = itemView.icon_detail_student
-        private val back: ImageView = itemView.iv_back_add_obs
 
         override fun bind(model: Student, position: Int) {
             name.text = model.name
@@ -251,8 +252,6 @@ class AdapterStudent(
                 i.putExtra("lastname", model.lastname)
                 activity.startActivity(i)
             }
-
-            back.setOnClickListener { activity.onBackPressed() }
         }
 
     }

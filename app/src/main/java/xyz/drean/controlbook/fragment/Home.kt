@@ -56,15 +56,16 @@ class Home : Fragment() {
         }
 
         verifyLogin()
-        getDataAssistant()
 
         return v
     }
 
     private fun verifyLogin() {
-        if(getPreference("idAssistant") == "Auxiliar") {
+        if(getPreference("idAssistant") == "Auxiliar" || getPreference("idAssistant") == "") {
             val i = Intent(activity, Login::class.java)
             startActivity(i)
+        } else {
+            getDataAssistant()
         }
     }
 

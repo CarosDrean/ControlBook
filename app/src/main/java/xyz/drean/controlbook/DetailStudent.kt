@@ -2,6 +2,7 @@ package xyz.drean.controlbook
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import kotlinx.android.synthetic.main.activity_detail_student.*
 import xyz.drean.controlbook.adapter.AdapterObservation
+import xyz.drean.controlbook.fragment.AddParent
+import xyz.drean.controlbook.fragment.Parents
 import xyz.drean.controlbook.pojo.Observation
 
 class DetailStudent : AppCompatActivity() {
@@ -19,6 +22,7 @@ class DetailStudent : AppCompatActivity() {
     private var collObsercation: CollectionReference? = null
     private var obsList: RecyclerView? = null
     private var adapter: AdapterObservation? = null
+    private var idStudent: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +33,34 @@ class DetailStudent : AppCompatActivity() {
 
         iv_back_detail.setOnClickListener { onBackPressed() }
 
+        idStudent = intent.getStringExtra("id")
+
         init()
-        getData(intent.getStringExtra("id"))
+        getData(idStudent!!)
+
+        val args = Bundle()
+        args.putString("idStudent", idStudent)
+
+        add_parent.setOnClickListener {
+            val addParent = AddParent()
+            addParent.arguments = args
+            addParent.show(supportFragmentManager, "Add Parent")
+        }
+
+        asign_parent.setOnClickListener {
+            val parents = Parents()
+            parents.arguments = args
+            parents.show(supportFragmentManager, "Asign Parent")
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        getParents()
+    }
+
+    private fun getParents() {
+        // actualizar actividad cuando se selecciona un elemento en un bottom shet fragment
     }
 
     private fun init() {
