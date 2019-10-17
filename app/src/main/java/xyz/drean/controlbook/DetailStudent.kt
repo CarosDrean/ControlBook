@@ -3,6 +3,7 @@ package xyz.drean.controlbook
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,8 @@ import xyz.drean.controlbook.adapter.AdapterObservation
 import xyz.drean.controlbook.fragment.AddParent
 import xyz.drean.controlbook.fragment.Parents
 import xyz.drean.controlbook.pojo.Observation
+import xyz.drean.controlbook.pojo.Parent
+import xyz.drean.controlbook.pojo.Student
 
 class DetailStudent : AppCompatActivity() {
 
@@ -41,26 +44,55 @@ class DetailStudent : AppCompatActivity() {
         val args = Bundle()
         args.putString("idStudent", idStudent)
 
-        add_parent.setOnClickListener {
-            val addParent = AddParent()
-            addParent.arguments = args
-            addParent.show(supportFragmentManager, "Add Parent")
-        }
-
         asign_parent.setOnClickListener {
             val parents = Parents()
             parents.arguments = args
             parents.show(supportFragmentManager, "Asign Parent")
         }
+
+        parent_assignated.setOnClickListener {
+            val parents = Parents()
+            parents.arguments = args
+            parents.show(supportFragmentManager, "Asign Parent")
+        }
+
+        if(intent.getStringExtra("idParent") == "" || intent.getStringExtra("idParent") == null) {
+            card_parent.isVisible = false
+            asign_parent.isVisible = true
+        } else {
+            getParents(intent.getStringExtra("idParent"))
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
-        getParents()
+    fun assignParent(idParent: String) {
+        val student = Student(idStudent!!,
+            intent.getStringExtra("name"),
+            intent.getStringExtra("lastname"),
+            intent.getStringExtra("dni"),
+            intent.getStringExtra("idClassRom"),
+            idParent)
+
+        db?.collection("students")!!
+            .document(idStudent!!)
+            .set(student)
+
+        getParents(student.idParent!!)
     }
 
-    private fun getParents() {
-        // actualizar actividad cuando se selecciona un elemento en un bottom shet fragment
+    private fun getParents(idParent: String) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("parents")
+            .document(idParent)
+            .get()
+            .addOnSuccessListener {document ->
+                val parent = document.toObject(Parent::class.java)
+                if(document.exists()){
+                    txt_name_par.text = parent!!.name
+                    txt_user_par.text = parent.lastname
+                    card_parent.isVisible = true
+                    asign_parent.isVisible = false
+                }
+            }
     }
 
     private fun init() {
@@ -74,7 +106,6 @@ class DetailStudent : AppCompatActivity() {
     }
 
     private fun getData(idStudent: String) {
-        //val query: Query = collObsercation?.orderBy("date", Query.Direction.DESCENDING) as Query
         val query: Query = collObsercation?.whereEqualTo("idStudent", idStudent) as Query
 
         val options = FirestoreRecyclerOptions.Builder<Observation>()
@@ -82,7 +113,6 @@ class DetailStudent : AppCompatActivity() {
             .build()
 
         adapter = AdapterObservation(options, this)
-        // obsList?.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         obsList?.adapter = adapter
     }
 

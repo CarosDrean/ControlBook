@@ -250,6 +250,9 @@ class AdapterStudent(
                 i.putExtra("id", model.id)
                 i.putExtra("name", model.name)
                 i.putExtra("lastname", model.lastname)
+                i.putExtra("dni", model.dni)
+                i.putExtra("idClassRom", model.idClassRom)
+                i.putExtra("idParent", model.idParent)
                 activity.startActivity(i)
             }
         }

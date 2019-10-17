@@ -61,7 +61,7 @@ class Parents : BottomSheetDialogFragment() {
             .setQuery(query, Parent::class.java)
             .build()
 
-        adapter = AdapterParent(options, activity!!)
+        adapter = AdapterParent(options, activity!!, this)
         parentList?.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
         parentList?.adapter = adapter
     }
