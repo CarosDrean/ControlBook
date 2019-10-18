@@ -36,8 +36,6 @@ class Home : Fragment() {
     ): View? {
         val v = inflater.inflate(R.layout.fragment_home, container, false)
 
-
-
         activity!!.window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         v.card_asistencias.setOnClickListener {
             val i = Intent(activity, ClassRoms::class.java)

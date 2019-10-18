@@ -30,7 +30,8 @@ class Profile : Fragment() {
         val v = inflater.inflate(R.layout.fragment_profile, container, false)
 
         getDataAssistant(v)
-        saveAccess(v)
+
+        v.save_acces_assist.setOnClickListener { saveAccess(v) }
 
         v.card_logout.setOnClickListener {
             savePreference("")
@@ -74,7 +75,7 @@ class Profile : Fragment() {
         v.save_acces_assist.setOnClickListener {
             assistant!!.user = v.et_user_profile.text.toString()
             assistant!!.password = v.et_password_profile.text.toString()
-            dab.addItem(assistant!!, getPreference("idAssistant"), "Assitants", "¡Datos Actualizados!")
+            dab.addItem(assistant!!, getPreference("idAssistant"), "assitants", "¡Datos Actualizados!")
         }
     }
 
