@@ -17,16 +17,12 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/iv_back_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerCrop"
-        android:tint="#fff"
-        android:src="@drawable/ic_back"
-        tools:ignore="ContentDescription" />
+        style="@style/ic_back"
+        android:src="@drawable/ic_back" />
 
     <TextView
         android:id="@+id/tv_auth_title"
@@ -57,18 +53,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="@dimen/margin_auth"
-        android:layout_marginEnd="@dimen/margin_auth"
-        android:padding="@dimen/padding_field"
-        android:background="@drawable/bg_auth_field"
-        android:drawablePadding="@dimen/padding_field"
         android:drawableStart="@drawable/icons8_administrator_24px"
-        android:fontFamily="@font/nunito_sans_reguler"
         android:hint="Nombres"
         android:inputType="textCapWords"
-        android:textColor="@color/colorPrimaryText"
-        android:textSize="@dimen/text_body_size"
-        android:textColorHint="@color/colorSecondaryText"
+        style="@style/edt_add"
         android:layout_below="@+id/iv_auth_bg"
         tools:ignore="Autofill" />
 
@@ -76,19 +64,10 @@
         android:id="@+id/et_lastname_student"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_default"
-        android:layout_marginStart="@dimen/margin_auth"
-        android:layout_marginEnd="@dimen/margin_auth"
-        android:background="@drawable/bg_auth_field"
         android:drawableStart="@drawable/icons8_pencil_24px"
-        android:drawablePadding="@dimen/padding_field"
-        android:fontFamily="@font/nunito_sans_reguler"
         android:hint="Apellidos"
         android:inputType="textCapWords"
-        android:padding="16dp"
-        android:textColor="@color/colorPrimaryText"
-        android:textColorHint="@color/colorSecondaryText"
-        android:textSize="@dimen/text_body_size"
+        style="@style/edt_add"
         android:layout_below="@+id/et_name_student"
         tools:ignore="Autofill" />
 
@@ -97,18 +76,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
-        android:layout_marginStart="@dimen/margin_auth"
-        android:layout_marginEnd="@dimen/margin_auth"
-        android:background="@drawable/bg_auth_field"
         android:drawableStart="@drawable/icons8_fingerprint_24px"
-        android:drawablePadding="@dimen/padding_field"
-        android:fontFamily="@font/nunito_sans_reguler"
         android:hint="DNI"
+        style="@style/edt_add"
         android:inputType="number"
-        android:padding="@dimen/padding_field"
-        android:textColor="@color/colorPrimaryText"
-        android:textColorHint="@color/colorSecondaryText"
-        android:textSize="@dimen/text_body_size"
         android:layout_below="@+id/et_lastname_student"
         tools:ignore="Autofill" />
 
@@ -125,19 +96,21 @@
         android:layout_below="@+id/et_dni_student"
         android:layout_centerHorizontal="true" />
 
-    <Button
+    <androidx.cardview.widget.CardView
         android:id="@+id/btn_save_student"
+        android:layout_below="@+id/tv_privacy_and_policy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_auth"
-        android:layout_marginTop="@dimen/margin_privacy_policy"
-        android:layout_marginEnd="@dimen/margin_auth"
-        android:layout_marginBottom="80dp"
-        android:background="@drawable/bg_auth_btn"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:text="GUARDAR"
-        android:textColor="@color/colorTextORIcon"
-        android:textSize="@dimen/text_btn_size"
-        android:layout_below="@+id/tv_privacy_and_policy" />
+        style="@style/card_button_save"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="23dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GUARDAR"
+            style="@style/text_card_button" />
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

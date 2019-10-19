@@ -16,4 +16,45 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="clickable">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+
+    <style name="ic_back" parent="clickable">
+        <item name="android:tint">#fff</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="card_button_save" parent="clickable">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginBottom">80dp</item>
+    </style>
+
+    <style name="text_card_button">
+        <item name="android:padding">12dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="edt_add">
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
+        <item name="android:background">@drawable/bg_auth_field</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:fontFamily">@font/nunito_sans_reguler</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
 </resources>

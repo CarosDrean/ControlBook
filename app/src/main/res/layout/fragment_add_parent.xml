@@ -24,12 +24,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="ContentDescription" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/iv_back_par"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:padding="5dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackground"
                 android:scaleType="centerCrop"
                 android:tint="#fff"
                 android:src="@drawable/ic_back"
@@ -172,20 +176,34 @@
                 android:layout_below="@+id/et_password_par"
                 android:layout_centerHorizontal="true" />
 
-            <Button
+            <androidx.cardview.widget.CardView
                 android:id="@+id/btn_save_parent"
+                android:layout_below="@+id/tv_privacy_and_policy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_auth"
-                android:layout_marginTop="@dimen/margin_privacy_policy"
-                android:layout_marginEnd="@dimen/margin_auth"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:layout_marginBottom="80dp"
-                android:background="@drawable/bg_auth_btn"
-                android:fontFamily="@font/nunito_sans_bold"
-                android:text="GUARDAR"
-                android:textColor="@color/colorTextORIcon"
-                android:textSize="@dimen/text_btn_size"
-                android:layout_below="@+id/tv_privacy_and_policy" />
+                android:layout_marginStart="@dimen/margin_auth"
+                android:layout_marginEnd="@dimen/margin_auth"
+                android:layout_marginTop="@dimen/margin_privacy_policy"
+                android:layout_centerHorizontal="true"
+                app:cardBackgroundColor="@color/colorPrimaryDark"
+                app:cardCornerRadius="23dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:text="GUARDAR"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:textColor="@android:color/white" />
+
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 

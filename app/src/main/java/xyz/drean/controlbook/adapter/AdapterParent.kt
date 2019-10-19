@@ -14,14 +14,18 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 
 import xyz.drean.controlbook.DetailStudent
 import xyz.drean.controlbook.R
+import xyz.drean.controlbook.abstraction.DataBase
 import xyz.drean.controlbook.fragment.Parents
 import xyz.drean.controlbook.pojo.Parent
+import java.util.*
 
 class AdapterParent(
     options: FirestoreRecyclerOptions<Parent>,
     private val activity: Activity,
     private val fragm: Parents
 ) : FirestoreRecyclerAdapter<Parent, AdapterParent.ParentHolder>(options) {
+
+    private val dab: DataBase = DataBase(activity)
 
     override fun onBindViewHolder(holder: ParentHolder, i: Int, model: Parent) {
         holder.name.text = model.name
@@ -30,6 +34,11 @@ class AdapterParent(
             (activity as DetailStudent).assignParent(model.id!!)
             fragm.dismiss()
             Toast.makeText(activity, "¡Padre asignado!", Toast.LENGTH_SHORT).show()
+        }
+
+        holder.content.setOnLongClickListener {
+            dab.alertDelete(i, this as FirestoreRecyclerAdapter<Objects, RecyclerView.ViewHolder>, "Padre")
+            true
         }
     }
 

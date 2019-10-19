@@ -24,7 +24,7 @@
         android:layout_marginStart="@dimen/margin_auth"
         android:layout_marginTop="@dimen/margin_auth_title"
         android:fontFamily="@font/nunito_sans_bold"
-        android:text="Control Book"
+        android:text="Control Book -\nAuxiliar"
         android:textColor="@color/colorTextORIcon"
         android:textSize="@dimen/text_title_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:text="@string/text_sign_up_subtitle"
+        android:text="Cuaderno de control virtual."
         android:textColor="@color/colorTextORIcon"
         android:textSize="@dimen/text_subtitle_size"
         app:layout_constraintStart_toStartOf="@+id/tv_auth_title"
@@ -99,22 +99,26 @@
         app:layout_constraintStart_toStartOf="@+id/et_password_field"
         app:layout_constraintTop_toBottomOf="@+id/et_password_field" />
 
-    <Button
+    <androidx.cardview.widget.CardView
         android:id="@+id/btn_sign_in"
+        android:layout_below="@+id/tv_privacy_and_policy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_auth"
-        android:layout_marginTop="@dimen/margin_privacy_policy"
-        android:layout_marginEnd="@dimen/margin_auth"
-        android:background="@drawable/bg_auth_btn"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:text="INGRESAR"
-        android:textColor="@color/colorTextORIcon"
-        android:textSize="@dimen/text_btn_size"
+        style="@style/card_button_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_privacy_and_policy" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_privacy_and_policy"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="23dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="INGRESAR"
+            style="@style/text_card_button" />
+
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tv_have_account"

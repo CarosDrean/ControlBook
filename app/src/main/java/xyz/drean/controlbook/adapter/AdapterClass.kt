@@ -17,14 +17,18 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 import xyz.drean.controlbook.R
+import xyz.drean.controlbook.abstraction.DataBase
 import xyz.drean.controlbook.fragment.Students
 import xyz.drean.controlbook.pojo.ClassRom
+import java.util.*
 
 class AdapterClass(
     options: FirestoreRecyclerOptions<ClassRom>,
     private val activity: Activity,
     private val contx: String
 ) : FirestoreRecyclerAdapter<ClassRom, AdapterClass.ClassHolder>(options) {
+
+    private val dab: DataBase = DataBase(activity)
 
     override fun onBindViewHolder(holder: ClassHolder, i: Int, model: ClassRom) {
         holder.name.text = model.name
@@ -33,7 +37,7 @@ class AdapterClass(
         holder.content.setOnClickListener { lead(model.id) }
 
         holder.content.setOnLongClickListener {
-            alertDelete(i)
+            dab.alertDelete(i, this as FirestoreRecyclerAdapter<Objects, RecyclerView.ViewHolder>, "Aula")
             true
         }
     }
@@ -52,23 +56,6 @@ class AdapterClass(
         return ClassHolder(v)
     }
 
-    private fun alertDelete(position: Int) {
-        val dialog = BottomSheetDialog(activity)
-        val inflater = activity.layoutInflater
-        val v = inflater.inflate(R.layout.delete_item, null)
-        val content = v.findViewById<LinearLayout>(R.id.delete_item)
-        content.setOnClickListener {
-            removeItem(position)
-            dialog.dismiss()
-        }
-        dialog.setContentView(v)
-        dialog.show()
-    }
-
-    private fun removeItem(position: Int) {
-        snapshots.getSnapshot(position).reference.delete()
-        Toast.makeText(activity, "¡Aula Eliminada!", Toast.LENGTH_SHORT).show()
-    }
 
     inner class ClassHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 

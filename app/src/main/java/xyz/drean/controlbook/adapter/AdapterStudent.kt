@@ -24,6 +24,7 @@ import xyz.drean.controlbook.R
 import xyz.drean.controlbook.abstraction.DataBase
 import xyz.drean.controlbook.pojo.Observation
 import xyz.drean.controlbook.pojo.Student
+import java.util.*
 
 class AdapterStudent(
     options: FirestoreRecyclerOptions<Student>,
@@ -38,7 +39,6 @@ class AdapterStudent(
 
     init {
         date = getPreference("dateAssistance")
-        Toast.makeText(activity, date, Toast.LENGTH_SHORT).show()
     }
 
     private fun getPreference(field: String): String {
@@ -75,19 +75,6 @@ class AdapterStudent(
         }
     }
 
-    private fun alertDelete(position: Int) {
-        val dialog = BottomSheetDialog(activity)
-        val inflater = activity.layoutInflater
-        val v = inflater.inflate(R.layout.delete_item, null)
-        val content = v.delete_item
-        content.setOnClickListener{
-            removeItem(position)
-            dialog.dismiss()
-        }
-        dialog.setContentView(v)
-        dialog.show()
-    }
-
     private fun verifyAssistance(idStudent: String?, date: String, box: CheckBox) {
         assistance(idStudent, date)
             .addSnapshotListener { value, e ->
@@ -115,11 +102,6 @@ class AdapterStudent(
         assert(obs.id != null)
 
         dab.addItem(obs, obs.id!!, coll, "¡Asistencia Guardada!")
-    }
-
-    private fun removeItem(position: Int) {
-        snapshots.getSnapshot(position).reference.delete()
-        Toast.makeText(activity, "¡Alumno Eliminado!", Toast.LENGTH_SHORT).show()
     }
 
     private fun checkAssistance(idStudent: String?, assistance: String, date: String) {
@@ -165,12 +147,15 @@ class AdapterStudent(
             }
 
         v.save_obs.setOnClickListener {
-            checkObservation(idStudent, v.et_add_obs.text.toString(), dat.getDate())
-            alert.dismiss()
+            if(v.et_add_obs.text.toString() != "") {
+                checkObservation(idStudent, v.et_add_obs.text.toString(), dat.getDate())
+                alert.dismiss()
+            } else {
+                Toast.makeText(activity, "Debe escribir una observación...", Toast.LENGTH_SHORT).show()
+            }
         }
 
         v.iv_back_add_obs.setOnClickListener { alert.dismiss() }
-
         alert.show()
     }
 
@@ -217,8 +202,12 @@ class AdapterStudent(
             name.text = model.name
             lastname.text = model.lastname
 
+            if(date != dab.getDate()) {
+                assistance.isEnabled = false
+            }
+
             content.setOnLongClickListener {
-                alertDelete(position)
+                dab.alertDelete(position, this@AdapterStudent as FirestoreRecyclerAdapter<Objects, RecyclerView.ViewHolder>, "Estudiante")
                 true
             }
 
@@ -241,7 +230,7 @@ class AdapterStudent(
             content.setOnClickListener { alertAddObservation(model.id) }
 
             content.setOnLongClickListener {
-                alertDelete(position)
+                dab.alertDelete(position, this@AdapterStudent as FirestoreRecyclerAdapter<Objects, RecyclerView.ViewHolder>, "Estudiante")
                 true
             }
 

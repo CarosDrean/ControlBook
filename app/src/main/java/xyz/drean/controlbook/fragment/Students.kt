@@ -28,8 +28,8 @@ import xyz.drean.controlbook.pojo.Student
 class Students : BottomSheetDialogFragment() {
 
     private var db: FirebaseFirestore? = null
-    private var collStudents: CollectionReference? = null
-    private var classList: RecyclerView? = null
+    private var coll: CollectionReference? = null
+    private var list: RecyclerView? = null
     private var adapter: AdapterStudent? = null
 
     override fun onCreateView(
@@ -62,25 +62,25 @@ class Students : BottomSheetDialogFragment() {
     }
 
     private fun init(v: View) {
-        classList = v.findViewById(R.id.list_students)
+        list = v.findViewById(R.id.list_students)
         db = FirebaseFirestore.getInstance()
-        collStudents = db?.collection("students")
+        coll = db?.collection("students")
 
         val llm = LinearLayoutManager(context)
         llm.orientation = LinearLayoutManager.VERTICAL
-        classList?.layoutManager = llm
+        list?.layoutManager = llm
     }
 
     private fun getData(idClassRom: String, contx: String) {
-        val query: Query = collStudents?.whereEqualTo("idClassRom", idClassRom) as Query
+        val query: Query = coll?.whereEqualTo("idClassRom", idClassRom)?.orderBy("lastname", Query.Direction.ASCENDING) as Query
 
         val options = FirestoreRecyclerOptions.Builder<Student>()
             .setQuery(query, Student::class.java)
             .build()
 
         adapter = AdapterStudent(options, activity!!, contx)
-        classList?.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
-        classList?.adapter = adapter
+        list?.addItemDecoration(DividerItemDecoration(activity, DividerItemDecoration.VERTICAL))
+        list?.adapter = adapter
     }
 
     override fun onStart() {

@@ -30,6 +30,8 @@ class AddClassRom : BottomSheetDialogFragment() {
             saveData(v)
         }
 
+        v.iv_back_class.setOnClickListener { dismiss() }
+
         return v
     }
 

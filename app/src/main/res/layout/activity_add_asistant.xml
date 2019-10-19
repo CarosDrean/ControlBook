@@ -17,14 +17,11 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/iv_back_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:scaleType="centerCrop"
-        android:tint="#fff"
+        style="@style/ic_back"
         android:src="@drawable/ic_back"
         tools:ignore="ContentDescription" />
 
@@ -123,7 +120,7 @@
         android:drawableStart="@drawable/icons8_add_user_24px"
         android:drawablePadding="@dimen/padding_field"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:hint="user"
+        android:hint="Usuario"
         android:inputType="text"
         android:padding="@dimen/padding_field"
         android:textColor="@color/colorPrimaryText"
@@ -143,7 +140,7 @@
         android:drawableStart="@drawable/icons8_key_2_24px"
         android:drawablePadding="@dimen/padding_field"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:hint="Password"
+        android:hint="Contraseña"
         android:inputType="textPassword"
         android:padding="@dimen/padding_field"
         android:textColor="@color/colorPrimaryText"
@@ -165,19 +162,21 @@
         android:layout_below="@+id/et_password_aux"
         android:layout_centerHorizontal="true" />
 
-    <Button
+    <androidx.cardview.widget.CardView
         android:id="@+id/btn_save_aux"
+        android:layout_below="@+id/tv_privacy_and_policy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_auth"
-        android:layout_marginTop="@dimen/margin_privacy_policy"
-        android:layout_marginEnd="@dimen/margin_auth"
-        android:layout_marginBottom="80dp"
-        android:background="@drawable/bg_auth_btn"
-        android:fontFamily="@font/nunito_sans_bold"
-        android:text="GUARDAR"
-        android:textColor="@color/colorTextORIcon"
-        android:textSize="@dimen/text_btn_size"
-        android:layout_below="@+id/tv_privacy_and_policy" />
+        style="@style/card_button_save"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="23dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GUARDAR"
+            style="@style/text_card_button" />
+
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

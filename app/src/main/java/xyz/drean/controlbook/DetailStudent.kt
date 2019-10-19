@@ -106,7 +106,7 @@ class DetailStudent : AppCompatActivity() {
     }
 
     private fun getData(idStudent: String) {
-        val query: Query = collObsercation?.whereEqualTo("idStudent", idStudent) as Query
+        val query: Query = collObsercation?.whereEqualTo("idStudent", idStudent)?.orderBy("id", Query.Direction.DESCENDING) as Query
 
         val options = FirestoreRecyclerOptions.Builder<Observation>()
             .setQuery(query, Observation::class.java)

@@ -21,14 +21,11 @@
                 android:src="@drawable/ic_curvebacks_01"
                 android:scaleType="fitXY"/>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/iv_back_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:scaleType="centerCrop"
-                android:tint="#fff"
+                style="@style/ic_back"
                 android:src="@drawable/ic_back"
                 tools:ignore="ContentDescription" />
 
@@ -45,7 +42,7 @@
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
                     android:textColor="#fff"
                     android:layout_marginTop="25dp"
-                    android:textSize="23sp"/>
+                    android:textSize="20sp"/>
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_calendar"

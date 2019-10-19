@@ -17,10 +17,10 @@
     <string name="text_btn_sign_in">Masuk</string>
     <string name="text_or">----- Atau -----</string>
     <string name="text_not_have_an_account">Belum memiliki akun? <b><font color='#039BE5'>Daftar</font></b></string>
-    <string name="text_sign_up_subtitle">Selamat datang, \nbergabunglah bersama kami</string>
+    <string name="text_sign_up_subtitle">Debe ingresar todos los datos \nsolicitados.</string>
     <string name="text_sign_up_title">Daftar</string>
     <string name="text_hint_confirm_password_field">Konfirmasi kata sandi</string>
-    <string name="text_privacy_and_policy">Dengan mendaftar Anda berarti menyetujui\n<b><font color='#039BE5'>Kebijakan</font></b> dan <b><font color='#039BE5'>Privasi</font></b></string>
+    <string name="text_privacy_and_policy">Los datos aqui ingresados son guardados \nde manera <b>segura</b>.</string>
     <string name="text_btn_sign_up">Daftar</string>
-    <string name="text_have_an_account">Sudah memiliki akun? <b><font color='#039BE5'>Masuk</font></b></string>
+    <string name="text_have_an_account">Desarrollado por <b><font color='#039BE5'>CarosDrean</font></b></string>
 </resources>

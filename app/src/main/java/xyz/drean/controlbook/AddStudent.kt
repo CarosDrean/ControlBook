@@ -19,6 +19,8 @@ class AddStudent : AppCompatActivity() {
         btn_save_student.setOnClickListener {
             saveData(idAula)
         }
+        
+        iv_back_student.setOnClickListener { onBackPressed() }
     }
 
     private fun saveData(idAula: String) {

@@ -55,7 +55,7 @@ class Parents : BottomSheetDialogFragment() {
     }
 
     private fun getData() {
-        val query: Query = collParents?.orderBy("name", Query.Direction.DESCENDING) as Query
+        val query: Query = collParents?.orderBy("name", Query.Direction.ASCENDING) as Query
 
         val options = FirestoreRecyclerOptions.Builder<Parent>()
             .setQuery(query, Parent::class.java)
