@@ -23,4 +23,9 @@
     <string name="text_privacy_and_policy">Los datos aqui ingresados son guardados \nde manera <b>segura</b>.</string>
     <string name="text_btn_sign_up">Daftar</string>
     <string name="text_have_an_account">Desarrollado por <b><font color='#039BE5'>CarosDrean</font></b></string>
+    <string name="control_book_nauxiliar">Control Book - \nAuxiliar</string>
+    <string name="cuaderno_de_control_virtual">Cuaderno de control virtual.</string>
+    <string name="usuario">Usuario</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="ingresar">INGRESAR</string>
 </resources>

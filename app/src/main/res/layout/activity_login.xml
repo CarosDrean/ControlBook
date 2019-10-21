@@ -17,6 +17,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
 
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_marginStart="@dimen/margin_auth"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"/>
+
     <TextView
         android:id="@+id/tv_auth_title"
         android:layout_width="wrap_content"
@@ -24,7 +34,7 @@
         android:layout_marginStart="@dimen/margin_auth"
         android:layout_marginTop="@dimen/margin_auth_title"
         android:fontFamily="@font/nunito_sans_bold"
-        android:text="Control Book -\nAuxiliar"
+        android:text="@string/control_book_nauxiliar"
         android:textColor="@color/colorTextORIcon"
         android:textSize="@dimen/text_title_size"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:text="Cuaderno de control virtual."
+        android:text="@string/cuaderno_de_control_virtual"
         android:textColor="@color/colorTextORIcon"
         android:textSize="@dimen/text_subtitle_size"
         app:layout_constraintStart_toStartOf="@+id/tv_auth_title"
@@ -53,7 +63,7 @@
         android:drawablePadding="@dimen/padding_field"
         android:drawableStart="@drawable/ic_mail"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:hint="Usuario"
+        android:hint="@string/usuario"
         android:inputType="textEmailAddress"
         android:textColor="@color/colorPrimaryText"
         android:textSize="@dimen/text_body_size"
@@ -74,7 +84,7 @@
         android:drawableStart="@drawable/ic_password"
         android:drawablePadding="@dimen/padding_field"
         android:fontFamily="@font/nunito_sans_reguler"
-        android:hint="Contraseña"
+        android:hint="@string/contrase_a"
         android:inputType="textPassword"
         android:padding="@dimen/padding_field"
         android:textColor="@color/colorPrimaryText"
@@ -115,7 +125,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="INGRESAR"
+            android:text="@string/ingresar"
             style="@style/text_card_button" />
 
     </androidx.cardview.widget.CardView>
