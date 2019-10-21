@@ -140,7 +140,7 @@
                         android:layout_width="130dp"
                         android:layout_height="210dp"
                         android:backgroundTint="@color/green_success"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         app:cardCornerRadius="20dp">
 
                         <LinearLayout

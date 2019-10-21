@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="212dp"
                 android:src="@drawable/ic_curvebacks_01"
+                tools:ignore="ContentDescription"
                 android:scaleType="fitXY"/>
 
             <ImageButton
