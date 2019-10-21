@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.add_meeting.*
 import kotlinx.android.synthetic.main.add_meeting.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
@@ -22,8 +23,10 @@ import xyz.drean.controlbook.ClassRoms
 import xyz.drean.controlbook.Login
 
 import xyz.drean.controlbook.R
+import xyz.drean.controlbook.abstraction.DataBase
 import xyz.drean.controlbook.pojo.Assistant
 import xyz.drean.controlbook.pojo.ClassRom
+import xyz.drean.controlbook.pojo.Meeting
 
 /**
  * A simple [Fragment] subclass.
@@ -53,17 +56,17 @@ class Home : Fragment() {
             alertAddMeeting()
         }
 
-        verifyLogin()
+        verifyLogin(v)
 
         return v
     }
 
-    private fun verifyLogin() {
+    private fun verifyLogin(v: View) {
         if(getPreference("idAssistant") == "Auxiliar" || getPreference("idAssistant") == "") {
             val i = Intent(activity, Login::class.java)
             startActivity(i)
         } else {
-            getDataAssistant()
+            getDataAssistant(v)
         }
     }
 
@@ -73,7 +76,7 @@ class Home : Fragment() {
         return date!!
     }
 
-    private fun getDataAssistant() {
+    private fun getDataAssistant(v: View) {
         val db = FirebaseFirestore.getInstance()
         db.collection("assitants")
             .document(getPreference("idAssistant"))
@@ -82,21 +85,35 @@ class Home : Fragment() {
                 val assist = document.toObject(Assistant::class.java)
 
                 if(document.exists()){
-                    name_aux.text = assist!!.name
+                    v.name_aux.text = assist!!.name
                 }
             }
     }
 
     private fun alertAddMeeting() {
+        val dab = DataBase(activity!!)
+
         val dialog: AlertDialog.Builder = AlertDialog.Builder(context!!)
         val inflater = activity!!.layoutInflater
         val v = inflater.inflate(R.layout.add_meeting, null)
 
-        getClassRom(v.spin_classrom)
-
         dialog.setView(v)
-        dialog.create()
-        dialog.show()
+        val alert = dialog.create()
+
+        v.btn_crear.setOnClickListener {
+            val meeting = Meeting(
+                System.currentTimeMillis().toString(),
+                v.et_add_meeting.text.toString(),
+                dab.getDate()
+            )
+
+            dab.addItem(meeting, meeting.id!!, "meetings", "¡Reunión creada!")
+            alert.dismiss()
+        }
+
+        v.iv_back_meeting.setOnClickListener { alert.dismiss() }
+
+        alert.show()
     }
 
     private fun getClassRom(spin: Spinner) {

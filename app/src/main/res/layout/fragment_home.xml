@@ -84,11 +84,9 @@
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_centerVertical="true"
                     android:textStyle="italic"
                     android:textColor="#fff"
-                    android:text="Hay un camino a tus pies, tu alegría es el mejor equipaje para recorrerlo. ¡Buenos días!"
-                    />
+                    android:text="@string/frase_home" />
 
 
             </LinearLayout>

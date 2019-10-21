@@ -5,10 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="?attr/selectableItemBackground"
-    android:padding="15dp">
+    style="@style/clickable"
+    android:padding="20dp">
 
     <TextView
         android:id="@+id/tv_date"

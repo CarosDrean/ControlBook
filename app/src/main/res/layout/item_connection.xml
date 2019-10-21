@@ -12,7 +12,7 @@
         android:scaleType="fitXY"/>
 
     <ImageButton
-        android:id="@+id/iv_back_meeting"
+        android:id="@+id/iv_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/ic_back"
@@ -28,10 +28,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="CREAR REUNION"
+            android:text="CONECCION NO DISPONIBLE"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             android:textColor="#fff"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="55dp"
             android:textSize="20sp"/>
 
         <androidx.cardview.widget.CardView
@@ -47,42 +47,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/delete_item"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/et_add_meeting"
+                <TextView
                     android:layout_width="match_parent"
+                    android:padding="30dp"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_auth_field"
-                    android:drawableStart="@drawable/icons8_pencil_24px"
-                    android:drawablePadding="@dimen/padding_field"
-                    android:fontFamily="@font/nunito_sans_reguler"
-                    android:hint="Ingresar Texto"
-                    android:inputType="textMultiLine"
-                    android:autofillHints=""
-                    android:lines="5"
-                    android:gravity="top"
-                    android:padding="16dp"
-                    android:textColor="@color/colorPrimaryText"
-                    android:textColorHint="@color/colorSecondaryText"
-                    android:textSize="@dimen/text_body_size" />
+                    android:textStyle="italic"
+                    android:textColor="#272727"
+                    android:text="@string/connection_none" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
-        <!--<androidx.appcompat.widget.AppCompatSpinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spin_classrom"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:padding="20dp"
-            style="@style/Widget.AppCompat.DropDownItem.Spinner"/>-->
-
         <androidx.cardview.widget.CardView
-            android:id="@+id/btn_crear"
+            android:id="@+id/btn_ok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -99,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="12dp"
-                android:text="CREAR"
+                android:text="ACEPTAR"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
