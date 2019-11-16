@@ -3,17 +3,20 @@ package xyz.drean.controlbook.adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.firebase.firestore.*
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.add_observation.view.*
 import kotlinx.android.synthetic.main.delete_item.view.delete_item
 import kotlinx.android.synthetic.main.item_student.view.*
@@ -51,17 +54,15 @@ class AdapterStudent(
         holder.bind(model, i)
     }
 
-    private fun lead(model: Student, assistance: CheckBox) {
-        if (contx == "assistance") {
-            verifyAssistance(model.id, date!!, assistance)
-
-            assistance.setOnCheckedChangeListener { buttonView, isChecked ->
-                checkAssistance(
-                    model.id,
-                    isChecked.toString(),
-                    date!!
-                )
-            }
+    private fun lead(idStudent: String, assistance: CheckBox) {
+        assistance.setOnClickListener {
+            Log.i("click", "en check")
+            Log.i("checked", assistance.isChecked.toString())
+            checkAssistance(
+                idStudent,
+                assistance.isChecked.toString(),
+                date!!
+            )
         }
     }
 
@@ -73,17 +74,6 @@ class AdapterStudent(
         } else {
             StudentHolderObs(vo)
         }
-    }
-
-    private fun verifyAssistance(idStudent: String?, date: String, box: CheckBox) {
-        assistance(idStudent, date)
-            .addSnapshotListener { value, e ->
-                assert(value != null)
-                for (doc in value!!) {
-                    val obs = doc.toObject(Observation::class.java)
-                    box.isChecked = java.lang.Boolean.valueOf(obs.assistance)
-                }
-            }
     }
 
     private fun assistance(idStudent: String?, date: String): Query {
@@ -114,6 +104,7 @@ class AdapterStudent(
                     for (value in task.result!!) {
                         au = 1
                         val obs = value.toObject(Observation::class.java)
+
                         obs.assistance = assistance
                         db.collection(coll).document(value.id).set(obs)
                     }
@@ -197,10 +188,15 @@ class AdapterStudent(
         private val lastname: TextView = itemView.findViewById(R.id.txt_lastname_student)
         private val assistance: CheckBox = itemView.findViewById(R.id.check_student)
         private val content: RelativeLayout = itemView.content_student_asist
+        private val ivStudent: CircleImageView = itemView.iv_student
 
         override fun bind(model: Student, position: Int) {
             name.text = model.name
             lastname.text = model.lastname
+            Glide.with(activity).load(R.drawable.student).into(ivStudent)
+
+            assistance.isChecked = false
+
 
             if(date != dab.getDate()) {
                 assistance.isEnabled = false
@@ -211,7 +207,17 @@ class AdapterStudent(
                 true
             }
 
-            lead(model, assistance)
+            assistance(model.id, date!!)
+                .get()
+                .addOnSuccessListener { documents ->
+                    Log.i("asi", "asi")
+                    for(doc in documents) {
+                        val obs = doc.toObject(Observation::class.java)
+                        assistance.isChecked = java.lang.Boolean.valueOf(obs.assistance)
+                    }
+                }
+
+            lead(model.id!!, assistance)
         }
 
     }
